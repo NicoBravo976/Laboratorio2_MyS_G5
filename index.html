@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de rentabilidad - Laboratorio 2</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <div class="contenedor">
+        <h1>Rentabilidad de una nueva sucursal</h1>
+        <p class="subtitulo">Laboratorio 2 - Modelos y Simulación</p>
+
+        <form id="formulario" novalidate>
+
+            <fieldset>
+                <legend>Generador congruencial mixto</legend>
+                <div class="grilla">
+                    <div class="campo">
+                        <label for="semilla">Semilla X₀</label>
+                        <input type="number" id="semilla" value="12345">
+                    </div>
+                    <div class="campo">
+                        <label for="a">Multiplicador a</label>
+                        <input type="number" id="a" value="1664525">
+                    </div>
+                    <div class="campo">
+                        <label for="c">Incremento c</label>
+                        <input type="number" id="c" value="1013904223">
+                    </div>
+                    <div class="campo">
+                        <label for="m">Módulo m</label>
+                        <input type="number" id="m" value="4294967296">
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Simulación y criterio de decisión</legend>
+                <div class="grilla">
+                    <div class="campo">
+                        <label for="corridas">Cantidad de corridas (meses simulados)</label>
+                        <input type="number" id="corridas" value="5000">
+                    </div>
+                    <div class="campo">
+                        <label for="probMinima">Probabilidad mínima de ganancia exigida (%)</label>
+                        <input type="number" id="probMinima" value="80" step="any">
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Datos del negocio</legend>
+                <div class="grilla">
+                    <div class="campo">
+                        <label for="mediaClientes">Clientes por mes: media μ</label>
+                        <input type="number" id="mediaClientes" value="1800" step="any">
+                    </div>
+                    <div class="campo">
+                        <label for="desvioClientes">Clientes por mes: desvío σ</label>
+                        <input type="number" id="desvioClientes" value="200" step="any">
+                    </div>
+                    <div class="campo">
+                        <label for="costoFijo">Costos fijos por mes ($)</label>
+                        <input type="number" id="costoFijo" value="5000000" step="any">
+                    </div>
+                    <div class="campo">
+                        <label for="ticketMin">Ticket promedio: mínimo ($)</label>
+                        <input type="number" id="ticketMin" value="6000" step="any">
+                    </div>
+                    <div class="campo">
+                        <label for="ticketModa">Ticket promedio: más probable ($)</label>
+                        <input type="number" id="ticketModa" value="7500" step="any">
+                    </div>
+                    <div class="campo">
+                        <label for="ticketMax">Ticket promedio: máximo ($)</label>
+                        <input type="number" id="ticketMax" value="9500" step="any">
+                    </div>
+                    <div class="campo">
+                        <label for="costoMin">Costo variable por cliente: mínimo ($)</label>
+                        <input type="number" id="costoMin" value="3000" step="any">
+                    </div>
+                    <div class="campo">
+                        <label for="costoMax">Costo variable por cliente: máximo ($)</label>
+                        <input type="number" id="costoMax" value="4500" step="any">
+                    </div>
+                </div>
+            </fieldset>
+
+            <button type="submit">Simular</button>
+        </form>
+
+        <div id="errores" class="caja error oculto"></div>
+        <div id="avisos" class="caja aviso oculto"></div>
+
+        <div id="resultados" class="oculto">
+            <h2>Resumen de resultados</h2>
+            <div id="resumen" class="resumen"></div>
+            <div id="decision" class="caja"></div>
+
+            <h2>Primeras corridas</h2>
+            <p class="nota" id="notaTabla"></p>
+            <div class="scroll-tabla">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Corrida</th>
+                            <th>U₁</th>
+                            <th>U₂</th>
+                            <th>U₃</th>
+                            <th>U₄</th>
+                            <th>Clientes N</th>
+                            <th>Ticket P ($)</th>
+                            <th>Costo C ($)</th>
+                            <th>Ingresos ($)</th>
+                            <th>Costos ($)</th>
+                            <th>Ganancia ($)</th>
+                            <th>Resultado</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpoTabla"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
